@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz: Wissen über die Gemeinde Lensahn</title>
+  <style>
+    body { font-family: Arial, sans-serif; color: #333; margin: 0; padding: 0; font-size: 0.9em; background: #f9f9f9; }
+    .container { max-width: 800px; margin: 20px auto; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    h1 { text-align: center; font-size: 2em; margin-bottom: 0.5em; padding: 0.5em; background: #e8f4fa; border: 2px solid #b0d4e3; border-radius: 10px; }
+    .intro { text-align: center; margin-bottom: 1em; line-height: 1.3; }
+    #result { text-align: center; font-size: 1.2em; margin-bottom: 1em; font-weight: bold; padding: 10px; border-radius: 5px; }
+    form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .question-box { background: #fafafa; border: 1px solid #ddd; border-radius: 6px; padding: 10px; transition: background 0.3s, border-color 0.3s; position: relative; }
+    .question-text { font-weight: bold; margin-bottom: 6px; }
+    .options label { display: block; margin-bottom: 4px; cursor: pointer; }
+    .options input, .text-input { margin-right: 6px; }
+    .text-input { width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+    .full-width { /* not used for Q10 */ }
+    .submit-btn { grid-column: 1 / -1; margin: 20px auto 0; padding: 12px 24px; font-size: 1.1em; background: #4CAF50; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+    .submit-btn:hover { background: #45a049; }
+    .correct { background: #e0f7e9 !important; border-color: #5cb85c !important; }
+    .incorrect { background: #fde2e2 !important; border-color: #d9534f !important; }
+    .correct-answer { margin-top: 8px; font-size: 0.85em; color: #155724; }
+    .correct-answer span { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Testen Sie Ihr Wissen über unsere Gemeinde Lensahn</h1>
+    <p class="intro">Beantworten Sie alle Fragen und erhalten Sie direktes Feedback!</p>
+    <div id="result"></div>
+    <form id="quiz-form">
+      <!-- Fragen 1 bis 10 wie gehabt -->
+      <div class="question-box" data-question="q1">
+        <div class="question-text">1. Wie viele Einwohner:innen hat die Gemeinde Lensahn ungefähr?</div>
+        <div class="options">
+          <label><input type="radio" name="q1" value="5600"> 5.600</label>
+          <label><input type="radio" name="q1" value="6500"> 6.500</label>
+          <label><input type="radio" name="q1" value="9000"> 9.000</label>
+        </div>
+      </div>
+      <!-- ... q2-q9 -->
+      <div class="question-box" data-question="q2">
+        <div class="question-text">2. Wie viele Mitglieder sind aktuell in der Gemeindevertretung?</div>
+        <div class="options">
+          <label><input type="radio" name="q2" value="12"> 12</label>
+          <label><input type="radio" name="q2" value="17"> 17</label>
+          <label><input type="radio" name="q2" value="20"> 20</label>
+        </div>
+      </div>
+      <div class="question-box" data-question="q3">
+        <div class="question-text">3. Wie heißt unser Bürgermeister?</div>
+        <input type="text" name="q3" class="text-input">
+      </div>
+      <div class="question-box" data-question="q4">
+        <div class="question-text">4. Ist Sipsdorf eine eigene Gemeinde oder ein Ortsteil?</div>
+        <div class="options">
+          <label><input type="radio" name="q4" value="eigene"> eigene Gemeinde</label>
+          <label><input type="radio" name="q4" value="ortsteil"> Ortsteil</label>
+        </div>
+      </div>
+      <div class="question-box" data-question="q5">
+        <div class="question-text">5. Wie heißt der größte Sportverein im Ort?</div>
+        <input type="text" name="q5" class="text-input">
+      </div>
+      <div class="question-box" data-question="q6">
+        <div class="question-text">6. Wer ist der Vorsitzende der Gemeindevertretung?</div>
+        <input type="text" name="q6" class="text-input">
+      </div>
+      <div class="question-box" data-question="q7">
+        <div class="question-text">7. Wo soll der neue Eisenbahn-Haltepunkt gebaut werden?</div>
+        <div class="options">
+          <label><input type="radio" name="q7" value="alten"> am alten Bahnhof</label>
+          <label><input type="radio" name="q7" value="autobahn"> an der Autobahn</label>
+          <label><input type="radio" name="q7" value="sipsdorf"> bei Sipsdorf</label>
+        </div>
+      </div>
+      <div class="question-box" data-question="q8">
+        <div class="question-text">8. Wo befindet sich die Bücherei?</div>
+        <div class="options">
+          <label><input type="radio" name="q8" value="begegnung"> Haus der Begegnung</label>
+          <label><input type="radio" name="q8" value="rathaus"> Rathaus</label>
+          <label><input type="radio" name="q8" value="museumshof"> Museumshof</label>
+        </div>
+      </div>
+      <div class="question-box" data-question="q9">
+        <div class="question-text">9. Was wurde getan, um 27.100 kg CO₂ einzusparen?</div>
+        <div class="options">
+          <label><input type="radio" name="q9" value="heizung"> Heizung im Rathaus ausschalten</label>
+          <label><input type="radio" name="q9" value="led"> Straßenbeleuchtung auf LED umrüsten</label>
+          <label><input type="radio" name="q9" value="wasser"> Wassertemperatur im Schwimmbad senken</label>
+        </div>
+      </div>
+      <div class="question-box" data-question="q10">
+        <div class="question-text">10. Womit unterstützt die Gemeinde junge Menschen im Schwimmbad?</div>
+        <div class="options">
+          <label><input type="radio" name="q10" value="frei"> freier Eintritt</label>
+          <label><input type="radio" name="q10" value="zehner"> 10er-Eintrittskarte</label>
+          <label><input type="radio" name="q10" value="nicht"> gar nicht</label>
+        </div>
+      </div>
+      <button type="button" class="submit-btn" onclick="checkQuiz()">Abschicken</button>
+    </form>
+  </div>
+
+  <script>
+    function checkQuiz() {
+      const keys = ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'];
+      const answers = {q1:'5600',q2:'20',q3:'Michael Robien',q4:'ortsteil',q5:'TSV Lensahn',q6:'Klaus Winter',q7:'autobahn',q8:'rathaus',q9:'led',q10:'zehner'};
+      const form = document.getElementById('quiz-form');
+      // Prüfen, ob alle Fragen beantwortet sind
+      for (let key of keys) {
+        const elem = form.elements[key];
+        let ans = '';
+        if (elem.type === 'text') ans = elem.value.trim();
+        else {
+          const sel = form.querySelector(`input[name="${key}"]:checked`);
+          ans = sel ? sel.value : '';
+        }
+        if (!ans) {
+          alert('Bitte beantworten Sie alle Fragen, bevor Sie abschicken.');
+          return;
+        }
+      }
+      // Auswertung
+      let correctCount = 0;
+      keys.forEach(key => {
+        const box = document.querySelector(`.question-box[data-question="${key}"]`);
+        box.classList.remove('correct','incorrect');
+        const elem = form.elements[key];
+        let user = elem.type==='text'?elem.value.trim(): (form.querySelector(`input[name="${key}"]:checked`)||{}).value;
+        const correctVal = answers[key];
+        let isCorrect = false;
+        // Spezialfälle
+        if (['q3','q6'].includes(key)) {
+          const lastname = correctVal.split(' ')[1].toLowerCase();
+          isCorrect = user.toLowerCase().includes(lastname);
+        } else if (key==='q5') {
+          isCorrect = user.replace(/\s+/g,'').toLowerCase().includes('tsvlensahn') || user.replace(/\s+/g,'').toLowerCase().includes('turnsportvereinlensahn');
+        } else {
+          isCorrect = user.toLowerCase() === correctVal.toLowerCase();
+        }
+        if (isCorrect) correctCount++;
+        box.classList.add(isCorrect?'correct':'incorrect');
+        const old = box.querySelector('.correct-answer'); if(old) old.remove();
+        if (!isCorrect) {
+          let display = correctVal;
+          const input = form.querySelector(`input[name="${key}"][value="${correctVal}"]`);
+          if (input && input.parentNode.tagName==='LABEL') display = input.parentNode.textContent.trim();
+          const ca = document.createElement('div'); ca.className='correct-answer';
+          ca.innerHTML = `Richtige Antwort: <span>${display}</span>`;
+          box.appendChild(ca);
+        }
+      });
+      // Ergebnisfarbe
+      const res = document.getElementById('result');
+      res.textContent = `Sie haben ${correctCount} von 10 richtig.`;
+      if (correctCount === 10) res.style.background = '#d4edda';
+      else if (correctCount >=5) res.style.background = '#fff3cd';
+      else res.style.background = '#f8d7da';
+      // Scroll zum Result
+      res.scrollIntoView({behavior:'smooth'});
+    }
+  </script>
+</body>
+</html>
